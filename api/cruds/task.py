@@ -53,3 +53,7 @@ async def post_reviews(
     await db.commit()
     await db.refresh(task)
     return task
+
+async def delete_task(db: AsyncSession, original: task_model.Task) -> None:
+    await db.delete(original)
+    await db.commit()
