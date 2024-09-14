@@ -5,7 +5,9 @@ import datetime
 
 class TaskBase(BaseModel):
     title: Optional[str] = Field(None, example="クリーニングを取りに行く")
-    datetime:Optional[str]=Field(None, example=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S"))
+    created_at: int = Field(None, example='9月14日12:00')   # 追加
+    stars: int = Field(None, example='3')   # 追加
+    comment: Optional[str] = Field(None, example='すごい')  # 追加
 
 class TaskCreate(TaskBase):
     pass
@@ -20,7 +22,7 @@ class TaskCreateResponse(TaskCreate):
 
 class Task(TaskBase):
     id: int
-    done: bool = Field(False, description="完了フラグ")
+    # done: bool = Field(False, description="完了フラグ")
 
     class Config:
         orm_mode = True
