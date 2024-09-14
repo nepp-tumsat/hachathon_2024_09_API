@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import api.models.task as task_model
 import api.schemas.task as task_schema
 from typing import List, Tuple, Optional
+import datetime
 
 from sqlalchemy import select
 from sqlalchemy.engine import Result
@@ -19,6 +20,7 @@ async def update_task(
     db: AsyncSession, task_create: task_schema.TaskCreate, original: task_model.Task
 ) -> task_model.Task:
     original.title = task_create.title
+    original.updated_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     db.add(original)
     await db.commit()
     await db.refresh(original)
@@ -34,6 +36,7 @@ async def get_tasks_with_done(db: AsyncSession) -> List[Tuple[int, str, bool]]:
                 task_model.Task.created_at,
                 task_model.Task.stars,
                 task_model.Task.comment,
+                task_model.Task.updated_at,
                 task_model.Done.id.isnot(None).label("done"),
             ).outerjoin(task_model.Done)
         )

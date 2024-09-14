@@ -9,6 +9,7 @@ class TaskBase(BaseModel):
     created_at: str = Field(None, example=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S"))
     stars: int = Field(None, example='3')   # 追加
     comment: Optional[str] = Field(None, example='すごい')  # 追加
+    updated_at: str = Field(None, example=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S"))
 
 class TaskCreate(TaskBase):
     pass

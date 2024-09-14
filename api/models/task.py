@@ -13,6 +13,7 @@ class Task(Base):
     created_at = Column(String(50),nullable=False)
     stars = Column(Integer, CheckConstraint('stars >=0 AND stars <=5'), nullable=False)  # 追加(星の数)
     comment = Column(String(200))   # 追加(本へのコメント)
+    updated_at = Column(String(50),nullable=False)  # 追加(更新日時)
 
     done = relationship("Done", back_populates="task", cascade="delete")
 
