@@ -8,9 +8,9 @@ import datetime
 from sqlalchemy import select
 from sqlalchemy.engine import Result
 
-async def get_task(db: AsyncSession, task_id: int) -> Optional[task_model.Task]:
+async def get_task(db: AsyncSession, reviews_id: int) -> Optional[task_model.Task]:
     result: Result = await db.execute(
-        select(task_model.Task).filter(task_model.Task.id == task_id)
+        select(task_model.Task).filter(task_model.Task.id == reviews_id)
     )
     task: Optional[Tuple[task_model.Task]] = result.first()
     return task[0] if task is not None else None
@@ -48,6 +48,7 @@ async def post_reviews(
 ) -> task_model.Task:
     task = task_model.Task(**task_create.dict())
     task.created_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
+    task.updated_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     db.add(task)
     await db.commit()
     await db.refresh(task)
