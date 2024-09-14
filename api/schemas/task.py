@@ -5,7 +5,7 @@ import datetime
 
 class TaskBase(BaseModel):
     title: Optional[str] = Field(None, example="クリーニングを取りに行く")
-    created_at: int = Field(None, example='9月14日12:00')   # 追加
+    created_at: str = Field(None, example=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S"))   # 追加
     stars: int = Field(None, example='3')   # 追加
     comment: Optional[str] = Field(None, example='すごい')  # 追加
 

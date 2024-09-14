@@ -10,11 +10,11 @@ class Task(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(1024))
 
-    created_at = Column(Time,nullable=False, default=datetime.datetime.now)   # 追加(作成日時)
+    created_at = Column(String(50),nullable=False)   # 追加(作成日時)
     stars = Column(Integer, CheckConstraint('stars >=0 AND stars <=5'), nullable=False)  # 追加(星の数)
     comment = Column(String(200))   # 追加(本へのコメント)
 
-    done = relationship("Done", back_populates="task", cascade="delete")  
+    done = relationship("Done", back_populates="task", cascade="delete")
 
 
 class Done(Base):
