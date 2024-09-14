@@ -47,6 +47,7 @@ async def post_reviews(
     db: AsyncSession, task_create: task_schema.TaskCreate
 ) -> task_model.Task:
     task = task_model.Task(**task_create.dict())
+    task.created_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     db.add(task)
     await db.commit()
     await db.refresh(task)
