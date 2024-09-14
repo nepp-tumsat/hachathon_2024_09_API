@@ -20,6 +20,8 @@ async def update_task(
     db: AsyncSession, task_create: task_schema.TaskCreate, original: task_model.Task
 ) -> task_model.Task:
     original.title = task_create.title
+    original.stars = task_create.stars
+    original.comment = task_create.comment
     original.updated_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     db.add(original)
     await db.commit()
