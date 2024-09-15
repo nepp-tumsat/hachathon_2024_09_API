@@ -1,5 +1,8 @@
 # hachathon_2024_09_API
+##　共同開発者;
+Doragon-RH
 
+taqtq
 # Docker imageの作成
 docker-compose build
 
@@ -40,3 +43,4 @@ docker-compose exec demo-app poetry add -D pytest-asyncio aiosqlite httpx
 
 # テスト実行(ルートディレクトリ内で)
 docker-compose run --entrypoint "poetry run pytest" demo-app
+
