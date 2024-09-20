@@ -4,6 +4,12 @@
 Doragon-RH
 
 taqtq
+
+
+
+https://github.com/user-attachments/assets/fbf7e268-9424-40b4-9b89-e603c4682b75
+
+
 ## 苦労したこと
 日時をフロント側で入力することなく、自動的に処理いたタイミングでDBの方に送る処理の記述、型定義
 
